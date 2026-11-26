@@ -9,8 +9,12 @@ import os
 
 GREETING = "Hi, it's Miso. I'm busy knocking your favorite mug off the table, so leave a message and I'll ignore it at 4 a.m."
 
+MAX_CHARS = 120
+
 
 def main() -> None:
+    if not GREETING or len(GREETING) > MAX_CHARS:
+        raise ValueError("greeting must be 1-120 characters")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(GREETING)
